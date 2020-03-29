@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from "next/link";
 
 const ProductThumbnail = ({ product }) => (
   <dl>
@@ -7,14 +7,9 @@ const ProductThumbnail = ({ product }) => (
       <img src={product.src} />
     </dd>
     <dt>Title</dt>
-    <dd>
-      {product.title}
-    </dd>
+    <dd>{product.title}</dd>
     <dt>Description</dt>
-    <dd>
-      {product.description}
-    </dd>
-    <dt>Link to product page</dt>
+    <dd>{product.description}</dd>
     <dd>
       <Link href="/posters/[slug]" as={`/posters/${product.handle}`}>
         <a>Link to product page</a>

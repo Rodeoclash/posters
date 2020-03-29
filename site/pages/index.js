@@ -1,9 +1,9 @@
-import 'isomorphic-unfetch';
+import "isomorphic-unfetch";
 
-import Head from 'next/head'
-import { buildClient, serialiseProducts } from '../services/shopify';
+import Head from "next/head";
+import { buildClient, serialiseProducts } from "../services/shopify";
 
-import ProductThumbnail from '../components/ProductThumbnail'
+import ProductThumbnail from "../components/ProductThumbnail";
 
 export async function getStaticProps() {
   const client = buildClient();
@@ -13,8 +13,8 @@ export async function getStaticProps() {
   return {
     props: {
       products: serialiseProducts(products),
-    }
-  }
+    },
+  };
 }
 
 const Home = ({ products }) => {
@@ -32,14 +32,11 @@ const Home = ({ products }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        {renderedProducts}
-      </main>
+      <main>{renderedProducts}</main>
 
       <style jsx>{`
         .container {
         }
-
       `}</style>
 
       <style jsx global>{`
@@ -47,12 +44,13 @@ const Home = ({ products }) => {
         body {
           padding: 0;
           margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-            Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+            sans-serif;
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

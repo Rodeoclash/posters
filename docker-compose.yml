@@ -1,4 +1,4 @@
-version: '3.3'
+version: "3.3"
 
 services:
   posters-site:
@@ -8,11 +8,11 @@ services:
     command: yarn dev
     image: rodeoclash/posters-site:latest
     logging:
-      driver: 'json-file'
+      driver: "json-file"
       options:
-        max-size: '200k'
-        max-file: '10'
+        max-size: "200k"
+        max-file: "10"
     ports:
-      - '3000:3000'
+      - "3000:3000"
     volumes:
       - ./site:/usr/src/app
