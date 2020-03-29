@@ -1,19 +1,23 @@
-import 'isomorphic-unfetch';
+import "isomorphic-unfetch";
 
-import Head from 'next/head'
-import { buildClient, serialiseProducts, serialiseProduct } from '../../services/shopify';
+import Head from "next/head";
+import {
+  buildClient,
+  serialiseProducts,
+  serialiseProduct,
+} from "../../services/shopify";
 
-import ProductThumbnail from '../../components/ProductThumbnail'
+import ProductThumbnail from "../../components/ProductThumbnail";
 
 export async function getStaticPaths(params) {
   const client = buildClient();
 
-  const res = await client.product.fetchAll()
-  const products = serialiseProducts(res)
+  const res = await client.product.fetchAll();
+  const products = serialiseProducts(res);
 
-  const paths = products.map(product => `/posters/${product.handle}`)
+  const paths = products.map((product) => `/posters/${product.handle}`);
 
-  return { paths, fallback: false }
+  return { paths, fallback: false };
 }
 
 export async function getStaticProps(params) {
@@ -24,12 +28,11 @@ export async function getStaticProps(params) {
   return {
     props: {
       product: serialiseProduct(product),
-    }
-  }
+    },
+  };
 }
 
 const Product = ({ product }) => {
-  
   return (
     <div className="container">
       <Head>
@@ -44,7 +47,6 @@ const Product = ({ product }) => {
       <style jsx>{`
         .container {
         }
-
       `}</style>
 
       <style jsx global>{`
@@ -52,13 +54,13 @@ const Product = ({ product }) => {
         body {
           padding: 0;
           margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-            Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+            sans-serif;
         }
       `}</style>
     </div>
-  )
+  );
+};
 
-}
-
-export default Product
+export default Product;
