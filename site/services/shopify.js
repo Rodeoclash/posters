@@ -21,3 +21,13 @@ export const serialiseProducts = (products) => {
     };
   });
 };
+
+export const serialiseProduct = (product) => {
+  return {
+    id: product.id,
+    title: product.title,
+    src: product.images[0].src,
+    description: product.description,
+    handle: product.handle,
+  };
+};
