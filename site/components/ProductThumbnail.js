@@ -5,13 +5,9 @@ const ProductThumbnail = ({ product }) => (
       <img src={product.src} />
     </dd>
     <dt>Title</dt>
-    <dd>
-      {product.title}
-    </dd>
+    <dd>{product.title}</dd>
     <dt>Description</dt>
-    <dd>
-      {product.description}
-    </dd>
+    <dd>{product.description}</dd>
   </dl>
 );
 
