@@ -1,0 +1,12 @@
+name: Continuous integration
+on: [push]
+
+jobs:
+    check-linting:
+        name: 'Check linting'
+        runs-on: 'ubuntu-latest'
+        steps:
+            - uses: 'actions/checkout@v1'
+
+            - name: Check site linting
+              run: npx prettier@2.0.2 --check ./site
