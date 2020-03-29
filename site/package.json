@@ -12,6 +12,7 @@
     "next": "9.3.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "shopify-buy": "^2.9.2"
+    "shopify-buy": "^2.9.2",
+    "url-slug": "^2.3.1"
   }
 }
