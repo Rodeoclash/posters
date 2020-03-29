@@ -16,7 +16,7 @@ const ProductThumbnail = ({ product }) => (
     </dd>
     <dt>Link to product page</dt>
     <dd>
-      <Link href="/posters/[slug]" as={'/posters/'+product.handle}>
+      <Link href="/posters/[slug]" as={`/posters/${product.handle}`}>
         <a>Link to product page</a>
       </Link>
     </dd>
