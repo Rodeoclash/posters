@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const ProductThumbnail = ({ product }) => (
   <dl>
     <dt>Image</dt>
@@ -8,6 +10,11 @@ const ProductThumbnail = ({ product }) => (
     <dd>{product.title}</dd>
     <dt>Description</dt>
     <dd>{product.description}</dd>
+    <dd>
+      <Link href="/posters/[slug]" as={`/posters/${product.handle}`}>
+        <a>Link to product page</a>
+      </Link>
+    </dd>
   </dl>
 );
 

@@ -17,6 +17,17 @@ export const serialiseProducts = (products) => {
       title: product.title,
       src: product.images[0].src,
       description: product.description,
+      handle: product.handle,
     };
   });
+};
+
+export const serialiseProduct = (product) => {
+  return {
+    id: product.id,
+    title: product.title,
+    src: product.images[0].src,
+    description: product.description,
+    handle: product.handle,
+  };
 };
