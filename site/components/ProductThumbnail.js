@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import urlSlug from 'url-slug'
 
 const ProductThumbnail = ({ product }) => (
   <dl>
@@ -15,13 +14,9 @@ const ProductThumbnail = ({ product }) => (
     <dd>
       {product.description}
     </dd>
-    <dt>ID</dt>
-    <dd>
-      {product.id}
-    </dd>
     <dt>Link to product page</dt>
     <dd>
-      <Link href="/posters/[slug]" as={'/posters/'+urlSlug(product.title)}>
+      <Link href="/posters/[slug]" as={'/posters/'+product.handle}>
         <a>Link to product page</a>
       </Link>
     </dd>

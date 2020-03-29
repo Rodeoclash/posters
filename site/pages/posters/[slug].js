@@ -1,7 +1,5 @@
 import 'isomorphic-unfetch';
 
-import urlSlug from 'url-slug'
-
 import Head from 'next/head'
 import { buildClient, serialiseProducts, serialiseProduct } from '../../services/shopify';
 
@@ -13,7 +11,7 @@ export async function getStaticPaths(params) {
   const res = await client.product.fetchAll()
   const products = serialiseProducts(res)
 
-  const paths = products.map(product => `/posters/${urlSlug(product.title)}`)
+  const paths = products.map(product => `/posters/${product.handle}`)
 
   return { paths, fallback: false }
 }
@@ -21,9 +19,7 @@ export async function getStaticPaths(params) {
 export async function getStaticProps(params) {
   const client = buildClient();
 
-  console.log(params);
-
-  const product = await client.product.fetch("Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzQ4MjQyODI5ODg1ODk=");
+  const product = await client.product.fetchByHandle(params.params.slug);
 
   return {
     props: {
