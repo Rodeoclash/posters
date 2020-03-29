@@ -2,7 +2,9 @@ import "isomorphic-unfetch";
 
 import Head from "next/head";
 import { buildClient, serialiseProducts } from "../services/shopify";
+import { Cart as CartStore } from "../stores/cart";
 
+import Cart from "../components/Cart";
 import ProductThumbnail from "../components/ProductThumbnail";
 
 export async function getStaticProps() {
@@ -27,28 +29,33 @@ const Home = ({ products }) => {
 
   return (
     <div className="container">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <CartStore>
+        <Head>
+          <title>Create Next App</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
-      <main>{renderedProducts}</main>
+        <main>
+          <Cart />
+          {renderedProducts}
+        </main>
 
-      <style jsx>{`
-        .container {
-        }
-      `}</style>
+        <style jsx>{`
+          .container {
+          }
+        `}</style>
 
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-      `}</style>
+        <style jsx global>{`
+          html,
+          body {
+            padding: 0;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+              Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+              sans-serif;
+          }
+        `}</style>
+      </CartStore>
     </div>
   );
 };

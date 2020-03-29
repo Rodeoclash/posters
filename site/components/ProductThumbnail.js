@@ -1,3 +1,5 @@
+import ProductAddToCart from "./ProductAddToCart";
+
 const ProductThumbnail = ({ product }) => (
   <dl>
     <dt>Image</dt>
@@ -8,6 +10,10 @@ const ProductThumbnail = ({ product }) => (
     <dd>{product.title}</dd>
     <dt>Description</dt>
     <dd>{product.description}</dd>
+    <dt>Actions</dt>
+    <dd>
+      <ProductAddToCart product={product} />
+    </dd>
   </dl>
 );
 
