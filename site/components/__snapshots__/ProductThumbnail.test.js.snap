@@ -22,5 +22,14 @@ exports[`renders correctly 1`] = `
   <dd>
     description 1
   </dd>
+  <dd>
+    <a
+      href="/posters/handle-1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      Link to product page
+    </a>
+  </dd>
 </dl>
 `;
