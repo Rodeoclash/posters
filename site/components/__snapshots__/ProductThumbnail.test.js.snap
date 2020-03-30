@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<dl>
+  <dt>
+    Image
+  </dt>
+  <dd>
+    <img
+      src="src 1"
+    />
+  </dd>
+  <dt>
+    Title
+  </dt>
+  <dd>
+    title 1
+  </dd>
+  <dt>
+    Description
+  </dt>
+  <dd>
+    description 1
+  </dd>
+</dl>
+`;
