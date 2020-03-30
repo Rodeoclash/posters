@@ -22,6 +22,9 @@ exports[`renders correctly 1`] = `
   <dd>
     description 1
   </dd>
+  <dt>
+    Link
+  </dt>
   <dd>
     <a
       href="/posters/handle-1"
@@ -30,6 +33,16 @@ exports[`renders correctly 1`] = `
     >
       Link to product page
     </a>
+  </dd>
+  <dt>
+    Actions
+  </dt>
+  <dd>
+    <button
+      onClick={[Function]}
+    >
+      Add to cart
+    </button>
   </dd>
 </dl>
 `;
