@@ -7,6 +7,7 @@ import {
   serialiseProduct,
 } from "../../services/shopify";
 
+import Cart from "../../components/Cart";
 import ProductThumbnail from "../../components/ProductThumbnail";
 
 export async function getStaticPaths(params) {
@@ -39,6 +40,8 @@ const Product = ({ product }) => {
         <title>Product Page for {product.title}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <Cart />
 
       <main>
         <ProductThumbnail product={product} />

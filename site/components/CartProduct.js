@@ -1,13 +1,15 @@
-import Link from "next/link";
+import { useContext } from "react";
 
-import ProductAddToCart from "../components/ProductAddToCart";
+import CartContext from "../contexts/cart";
+
+import Link from "next/link";
 import ProductLink from "../components/ProductLink";
 
-const ProductThumbnail = ({ product }) => (
+const CartProduct = ({ product }) => (
   <dl>
     <dt>Image</dt>
     <dd>
-      <img src={product.src} />
+      <img src={product.src} width="50" />
     </dd>
     <dt>Title</dt>
     <dd>{product.title}</dd>
@@ -17,11 +19,7 @@ const ProductThumbnail = ({ product }) => (
     <dd>
       <ProductLink product={product} />
     </dd>
-    <dt>Actions</dt>
-    <dd>
-      <ProductAddToCart product={product} />
-    </dd>
   </dl>
 );
 
-export default ProductThumbnail;
+export default CartProduct;

@@ -3,7 +3,9 @@ import "isomorphic-unfetch";
 import Head from "next/head";
 import { buildClient, serialiseProducts } from "../services/shopify";
 
+import Cart from "../components/Cart";
 import ProductThumbnail from "../components/ProductThumbnail";
+import Products from "../components/Products";
 
 export async function getStaticProps() {
   const client = buildClient();
@@ -18,13 +20,6 @@ export async function getStaticProps() {
 }
 
 const Home = ({ products }) => {
-  const renderedProducts = products.map((product) => (
-    <React.Fragment key={product.id}>
-      <ProductThumbnail product={product} />
-      <hr />
-    </React.Fragment>
-  ));
-
   return (
     <div className="container">
       <Head>
@@ -32,7 +27,10 @@ const Home = ({ products }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>{renderedProducts}</main>
+      <Cart />
+
+      <h2>Products</h2>
+      <Products products={products} />
 
       <style jsx>{`
         .container {
