@@ -1,20 +1,25 @@
 import "isomorphic-unfetch";
 
-import Head from "next/head";
+import { flow } from "lodash/fp";
+
 import { buildClient, serialiseProducts } from "../services/shopify";
+import { products as productsQuery } from "../services/shopify/queries";
+import { unpackResponse, serialise } from "../services/shopify/products";
 
 import Cart from "../components/Cart";
+import Head from "next/head";
 import ProductThumbnail from "../components/ProductThumbnail";
 import Products from "../components/Products";
 
 export async function getStaticProps() {
   const client = buildClient();
+  const result = await client.graphQLClient.send(productsQuery(client));
 
-  const products = await client.product.fetchAll();
+  const products = flow(unpackResponse, serialise)(result);
 
   return {
     props: {
-      products: serialiseProducts(products),
+      products,
     },
   };
 }
@@ -23,8 +28,8 @@ const Home = ({ products }) => {
   return (
     <div className="container">
       <Head>
-        <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
+        <title>Create Next App</title>
       </Head>
 
       <Cart />

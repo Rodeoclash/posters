@@ -7,27 +7,27 @@ exports[`renders correctly 1`] = `
   </dt>
   <dd>
     <img
-      src="src 1"
+      src="https://cdn.shopify.com/s/files/1/0380/1713/8733/products/mockup-29dc6c6a.png?v=1585737094"
     />
   </dd>
   <dt>
     Title
   </dt>
   <dd>
-    title 1
+    Test Poster 1
   </dd>
   <dt>
     Description
   </dt>
   <dd>
-    description 1
+    Museum-quality posters made on thick and durable matte paper. Add a wonderful accent to your room and office with these posters that are sure to brighten any environment. • Paper thickness: 10.3 mil • Paper weight: 5.6 oz/y² (192 g/m²) • Giclée printing quality • Opacity: 94%
   </dd>
   <dt>
     Link
   </dt>
   <dd>
     <a
-      href="/posters/handle-1"
+      href="/posters/test-poster-2"
       onClick={[Function]}
       onMouseEnter={[Function]}
     >

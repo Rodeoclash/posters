@@ -1,34 +1,45 @@
 import "isomorphic-unfetch";
 
-import Head from "next/head";
+import { flow } from "lodash/fp";
+
+import { buildClient } from "../../services/shopify";
 import {
-  buildClient,
-  serialiseProducts,
-  serialiseProduct,
-} from "../../services/shopify";
+  unpackResponse as unpackResponseProducts,
+  detailPageUrls,
+} from "../../services/shopify/products";
+import {
+  unpackResponse as unpackResponseProduct,
+  serialise,
+} from "../../services/shopify/product";
+import {
+  products as productsQuery,
+  product as productQuery,
+} from "../../services/shopify/queries";
 
 import Cart from "../../components/Cart";
+import Head from "next/head";
 import ProductThumbnail from "../../components/ProductThumbnail";
 
-export async function getStaticPaths(params) {
+export async function getStaticPaths() {
   const client = buildClient();
+  const result = await client.graphQLClient.send(productsQuery(client));
 
-  const res = await client.product.fetchAll();
-  const products = serialiseProducts(res);
-
-  const paths = products.map((product) => `/posters/${product.handle}`);
+  const paths = flow(unpackResponseProducts, detailPageUrls)(result);
 
   return { paths, fallback: false };
 }
 
-export async function getStaticProps(params) {
+export async function getStaticProps({ params }) {
   const client = buildClient();
+  const result = await client.graphQLClient.send(
+    productQuery(client, params.slug)
+  );
 
-  const product = await client.product.fetchByHandle(params.params.slug);
+  const product = flow(unpackResponseProduct, serialise)(result);
 
   return {
     props: {
-      product: serialiseProduct(product),
+      product,
     },
   };
 }
@@ -37,8 +48,9 @@ const Product = ({ product }) => {
   return (
     <div className="container">
       <Head>
-        <title>Product Page for {product.title}</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta name="description" content={product.metafields.description} />
+        <title>{product.metafields.title}</title>
       </Head>
 
       <Cart />

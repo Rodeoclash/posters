@@ -1,10 +1,10 @@
-import LoadingProvider from "../providers/cart";
+import CartProvider from "../providers/cart";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <LoadingProvider>
+    <CartProvider>
       <Component {...pageProps} />
-    </LoadingProvider>
+    </CartProvider>
   );
 }
 
