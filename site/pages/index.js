@@ -1,5 +1,3 @@
-import "isomorphic-unfetch";
-
 import { flow } from "lodash/fp";
 
 import { buildClient, serialiseProducts } from "../services/shopify";
@@ -10,6 +8,8 @@ import Cart from "../components/Cart";
 import Head from "next/head";
 import ProductThumbnail from "../components/ProductThumbnail";
 import Products from "../components/Products";
+
+import styles from "./index.module.css";
 
 export async function getStaticProps() {
   const client = buildClient();
@@ -26,32 +26,27 @@ export async function getStaticProps() {
 
 const Home = ({ products }) => {
   return (
-    <div className="container">
+    <div className={styles.root}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <title>Create Next App</title>
+        <title>Scientific Posters</title>
+        <link
+          href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800"
+          rel="stylesheet"
+        />
       </Head>
 
-      <Cart />
+      <div className={styles.wrapper}>
+        <main className={styles.shop}>
+          <h1>Scientific Posters</h1>
+          <h2>Products</h2>
+          <Products products={products} />
+        </main>
 
-      <h2>Products</h2>
-      <Products products={products} />
-
-      <style jsx>{`
-        .container {
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-      `}</style>
+        <aside className={styles.cart}>
+          <Cart />
+        </aside>
+      </div>
     </div>
   );
 };

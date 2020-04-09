@@ -1,9 +1,4 @@
-import { useContext } from "react";
-
-import CartContext from "../contexts/cart";
-
-import Link from "next/link";
-import ProductLink from "../components/ProductLink";
+import ProductLink from "../ProductLink";
 
 const CartProduct = ({ product }) => (
   <dl>

@@ -1,5 +1,5 @@
-import CartProducts from "../components/CartProducts";
-import CartSize from "../components/CartSize";
+import CartProducts from "../CartProducts";
+import CartSize from "../CartSize";
 
 const Cart = () => (
   <>

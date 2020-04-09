@@ -1,5 +1,3 @@
-import "isomorphic-unfetch";
-
 import { flow } from "lodash/fp";
 
 import { buildClient } from "../../services/shopify";
@@ -18,7 +16,6 @@ import {
 
 import Cart from "../../components/Cart";
 import Head from "next/head";
-import ProductThumbnail from "../../components/ProductThumbnail";
 
 export async function getStaticPaths() {
   const client = buildClient();
@@ -55,25 +52,7 @@ const Product = ({ product }) => {
 
       <Cart />
 
-      <main>
-        <ProductThumbnail product={product} />
-      </main>
-
-      <style jsx>{`
-        .container {
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-      `}</style>
+      <main>{JSON.stringify(product)}</main>
     </div>
   );
 };
