@@ -5,4 +5,7 @@ module.exports = {
     "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
   },
   transformIgnorePatterns: ["/node_modules/"],
+  moduleNameMapper: {
+    "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js",
+  },
 };

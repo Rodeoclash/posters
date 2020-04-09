@@ -7,12 +7,12 @@ import styles from "./ProductThumbnail.module.css";
 const ProductThumbnail = ({ product }) => (
   <div className={styles.root}>
     <img className={styles.image} src={product.src} />
-    <h3 className="font-bold">{product.title}</h3>
-    <div className="flex-1 p-2">
-      <div className="p-1">
+    <h3>{product.title}</h3>
+    <div>
+      <div>
         <ProductLink product={product} />
       </div>
-      <div className="p-1">
+      <div>
         <ProductAddToCart product={product} />
       </div>
     </div>
