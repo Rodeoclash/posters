@@ -1,6 +1,6 @@
 import "isomorphic-unfetch";
 
-import CartProvider from "../providers/cart";
+import CartProvider from "../providers/Cart";
 
 function MyApp({ Component, pageProps }) {
   return (
