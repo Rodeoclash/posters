@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshots with product in the cart 1`] = `
+<button
+  onClick={[Function]}
+>
+  Remove product
+</button>
+`;
+
+exports[`snapshots with product not in the cart 1`] = `null`;
