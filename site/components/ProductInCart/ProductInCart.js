@@ -1,9 +1,7 @@
-import { useContext } from "react";
-
-import CartContext from "../../contexts/cart";
+import { useCartContext } from "../../contexts/cart";
 
 const ProductInCart = ({ product }) => {
-  const { productInCart } = useContext(CartContext);
+  const { productInCart } = useCartContext();
 
   if (productInCart(product) === false) {
     return null;
