@@ -1,13 +1,13 @@
 import { useContext } from "react";
 
-import ProductThumbnail from "../ProductThumbnail";
+import ProductPreview from "../ProductPreview";
 
 import styles from "./Products.module.css";
 
 const Products = ({ products }) => {
   const renderedProducts = products.map((product) => (
     <div className={styles.product} key={product.id}>
-      <ProductThumbnail product={product} />
+      <ProductPreview product={product} />
     </div>
   ));
 

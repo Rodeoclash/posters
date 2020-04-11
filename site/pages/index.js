@@ -6,7 +6,6 @@ import { unpackResponse, serialise } from "../services/shopify/products";
 
 import Cart from "../components/Cart";
 import Head from "next/head";
-import ProductThumbnail from "../components/ProductThumbnail";
 import Products from "../components/Products";
 
 import styles from "./index.module.css";
