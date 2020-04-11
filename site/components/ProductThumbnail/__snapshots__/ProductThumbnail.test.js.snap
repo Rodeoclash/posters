@@ -2,9 +2,13 @@
 
 exports[`renders correctly 1`] = `
 <div>
-  <img
-    src="https://cdn.shopify.com/s/files/1/0380/1713/8733/products/mockup-29dc6c6a.png?v=1585737094"
-  />
+  <a
+    href="/posters/test-poster-2"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+  >
+    View
+  </a>
   <h3>
     Test Poster 1
   </h3>
