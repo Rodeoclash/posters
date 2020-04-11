@@ -1,11 +1,9 @@
-import { useContext } from "react";
-
-import CartContext from "../../contexts/cart";
+import { useCartContext } from "../../contexts/cart";
 
 import styles from "./CartProductRemove.module.css";
 
 const CartProductRemove = ({ product }) => {
-  const { removeProduct, productInCart } = useContext(CartContext);
+  const { removeProduct, productInCart } = useCartContext();
 
   if (productInCart(product) === false) {
     return null;
