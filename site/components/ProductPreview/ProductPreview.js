@@ -4,9 +4,9 @@ import ProductImage from "../ProductImage";
 import ProductInCart from "../ProductInCart";
 import ProductLink from "../ProductLink";
 
-import styles from "./ProductThumbnail.module.css";
+import styles from "./ProductPreview.module.css";
 
-const ProductThumbnail = ({ product }) => (
+const ProductPreview = ({ product }) => (
   <div className={styles.root}>
     <ProductImage product={product} />
     <h3>{product.title}</h3>
@@ -22,4 +22,4 @@ const ProductThumbnail = ({ product }) => (
   </div>
 );
 
-export default ProductThumbnail;
+export default ProductPreview;
