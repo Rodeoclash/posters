@@ -4,18 +4,18 @@ import ProductImage from "../ProductImage";
 import ProductInCart from "../ProductInCart";
 import ProductLink from "../ProductLink";
 
-import styles from "./ProductPreview.module.css";
+import styles from "./ProductDetail.module.css";
 
-const ProductPreview = ({ product }) => (
+const ProductDetail = ({ product }) => (
   <div className={styles.root}>
     <ProductImage product={product} />
     <h3>{product.title}</h3>
+    <p>{product.description}</p>
     <div>
-      <ProductLink product={product}>View</ProductLink>
       <ProductAddToCart product={product} />
       <ProductInCart product={product} />
     </div>
   </div>
 );
 
-export default ProductPreview;
+export default ProductDetail;
