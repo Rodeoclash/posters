@@ -4,11 +4,9 @@ import { buildClient, serialiseProducts } from "../services/shopify";
 import { products as productsQuery } from "../services/shopify/queries";
 import { unpackResponse, serialise } from "../services/shopify/products";
 
-import Cart from "../components/Cart";
 import Head from "next/head";
+import Content from "../components/UI/Content";
 import Products from "../components/Products";
-
-import styles from "./index.module.css";
 
 export async function getStaticProps() {
   const client = buildClient();
@@ -25,7 +23,7 @@ export async function getStaticProps() {
 
 const Home = ({ products }) => {
   return (
-    <div className={styles.root}>
+    <>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <title>Scientific Posters</title>
@@ -35,18 +33,10 @@ const Home = ({ products }) => {
         />
       </Head>
 
-      <div className={styles.wrapper}>
-        <main className={styles.shop}>
-          <h1>Scientific Posters</h1>
-          <h2>Products</h2>
-          <Products products={products} />
-        </main>
-
-        <aside className={styles.cart}>
-          <Cart />
-        </aside>
-      </div>
-    </div>
+      <Content>
+        <Products products={products} />
+      </Content>
+    </>
   );
 };
 

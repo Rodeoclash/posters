@@ -16,6 +16,8 @@ import {
 
 import Cart from "../../components/Cart";
 import Head from "next/head";
+import Content from "../../components/UI/Content";
+import ProductDetail from "../../components/ProductDetail";
 
 export async function getStaticPaths() {
   const client = buildClient();
@@ -43,17 +45,17 @@ export async function getStaticProps({ params }) {
 
 const Product = ({ product }) => {
   return (
-    <div className="container">
+    <>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content={product.metafields.description} />
         <title>{product.metafields.title}</title>
       </Head>
 
-      <Cart />
-
-      <main>{JSON.stringify(product)}</main>
-    </div>
+      <Content>
+        <ProductDetail product={product} />
+      </Content>
+    </>
   );
 };
 
