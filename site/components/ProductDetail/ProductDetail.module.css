@@ -1,2 +1,11 @@
 .root {
+  display: flex;
+}
+
+.image {
+  padding-right: 0.5rem;
+}
+
+.about {
+  padding-left: 0.5rem;
 }

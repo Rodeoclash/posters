@@ -1,15 +1,13 @@
-import { useContext } from "react";
-
-import CartContext from "../../contexts/cart";
+import { useCartContext } from "../../contexts/cart";
 
 const ProductAddToCart = ({ product }) => {
-  const { addProduct, productInCart } = useContext(CartContext);
+  const { add, contains } = useCartContext();
 
-  if (productInCart(product) === true) {
+  if (contains(product) === true) {
     return null;
   }
 
-  return <button onClick={addProduct.bind(this, product)}>Add to cart</button>;
+  return <button onClick={add.bind(this, product)}>Add to cart</button>;
 };
 
 export default ProductAddToCart;

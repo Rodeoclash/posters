@@ -1,9 +1,9 @@
 import { useCartContext } from "../../contexts/cart";
 
 const ProductInCart = ({ product }) => {
-  const { productInCart } = useCartContext();
+  const { contains } = useCartContext();
 
-  if (productInCart(product) === false) {
+  if (contains(product) === false) {
     return null;
   }
 

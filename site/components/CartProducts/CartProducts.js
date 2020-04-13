@@ -1,12 +1,10 @@
-import { useContext } from "react";
-
-import CartContext from "../../contexts/cart";
+import { useCartContext } from "../../contexts/cart";
 import CartProduct from "../CartProduct";
 
 import styles from "./CartProducts.module.css";
 
 const CartProducts = () => {
-  const { products } = useContext(CartContext);
+  const { products } = useCartContext();
 
   const renderedProducts = products.map((product) => (
     <div className={styles.product} key={product.id}>

@@ -1,31 +1,42 @@
 import { useState } from "react";
 import CartContext from "../contexts/cart.js";
-
-import { add as cartAdd, remove as cartRemove, inCart } from "../services/cart";
+import * as cart from "../services/cart";
 
 const CartProvider = ({ children }) => {
-  const [cart, setState] = useState({
+  const [cartState, setCartState] = useState({
     products: [],
+    showing: false,
   });
 
-  const addProduct = (product) => {
-    setState(cartAdd(cart, product));
+  const add = (product) => {
+    setCartState(cart.add(cartState, product));
   };
 
-  const removeProduct = (product) => {
-    setState(cartRemove(cart, product));
+  const contains = (product) => {
+    return cart.contains(cartState, product);
   };
 
-  const productInCart = (product) => {
-    return inCart(cart, product);
+  const hide = () => {
+    setCartState(cart.hide(cartState));
+  };
+
+  const remove = (product) => {
+    setCartState(cart.remove(cartState, product));
+  };
+
+  const show = () => {
+    setCartState(cart.show(cartState));
   };
 
   const value = {
-    addProduct,
-    productInCart,
-    products: cart.products,
-    removeProduct,
-    size: cart.products.length,
+    add,
+    contains,
+    hide,
+    products: cartState.products,
+    remove,
+    show,
+    showing: cartState.showing,
+    size: cartState.products.length,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

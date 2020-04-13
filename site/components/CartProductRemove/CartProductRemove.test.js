@@ -8,13 +8,13 @@ import CartProductRemove from "./CartProductRemove";
 describe("onClick", () => {
   it("calls function to remove product from cart", () => {
     const product = {};
-    const removeProduct = jest.fn();
+    const remove = jest.fn();
 
     const contextValues = {
-      productInCart() {
+      contains() {
         return true;
       },
-      removeProduct,
+      remove,
     };
 
     jest
@@ -25,20 +25,20 @@ describe("onClick", () => {
 
     fireEvent.click(getByText("Remove product"));
 
-    expect(removeProduct).toHaveBeenCalledWith(product, expect.anything());
+    expect(remove).toHaveBeenCalledWith(product, expect.anything());
   });
 });
 
 describe("snapshots", () => {
   it("with product in the cart", () => {
     const product = {};
-    const removeProduct = jest.fn();
+    const remove = jest.fn();
 
     const contextValues = {
-      productInCart() {
+      contains() {
         return true;
       },
-      removeProduct,
+      remove,
     };
 
     jest
@@ -54,13 +54,13 @@ describe("snapshots", () => {
 
   it("with product not in the cart", () => {
     const product = {};
-    const removeProduct = jest.fn();
+    const remove = jest.fn();
 
     const contextValues = {
-      productInCart() {
+      contains() {
         return false;
       },
-      removeProduct,
+      remove,
     };
 
     jest

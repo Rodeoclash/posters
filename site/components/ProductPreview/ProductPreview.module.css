@@ -1,2 +1,15 @@
 .root {
 }
+
+.meta {
+  display: flex;
+  margin: 0 -0.5rem;
+}
+
+.meta > * {
+  margin: 0 0.5rem;
+}
+
+.title {
+  flex-grow: 1;
+}

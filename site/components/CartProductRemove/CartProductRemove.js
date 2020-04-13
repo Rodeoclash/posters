@@ -3,15 +3,13 @@ import { useCartContext } from "../../contexts/cart";
 import styles from "./CartProductRemove.module.css";
 
 const CartProductRemove = ({ product }) => {
-  const { removeProduct, productInCart } = useCartContext();
+  const { remove, contains } = useCartContext();
 
-  if (productInCart(product) === false) {
+  if (contains(product) === false) {
     return null;
   }
 
-  return (
-    <button onClick={removeProduct.bind(this, product)}>Remove product</button>
-  );
+  return <button onClick={remove.bind(this, product)}>Remove product</button>;
 };
 
 export default CartProductRemove;

@@ -1,12 +1,72 @@
-import { inCart, add, remove, ProductNotFound, ProductExists } from "./cart";
+import {
+  ProductExists,
+  ProductNotFound,
+  add,
+  hide,
+  contains,
+  show,
+  remove,
+} from "./cart";
 
-describe("inCart", () => {
+describe("show", () => {
+  it("when cart not showing", () => {
+    const cart = {
+      showing: false,
+    };
+
+    const result = show(cart);
+
+    expect(result).toStrictEqual({
+      showing: true,
+    });
+  });
+
+  it("when cart showing", () => {
+    const cart = {
+      showing: true,
+    };
+
+    const result = show(cart);
+
+    expect(result).toStrictEqual({
+      showing: true,
+    });
+  });
+});
+
+describe("hide", () => {
+  it("when cart not showing", () => {
+    const cart = {
+      showing: false,
+    };
+
+    const result = hide(cart);
+
+    expect(result).toStrictEqual({
+      showing: false,
+    });
+  });
+
+  it("when cart showing", () => {
+    const cart = {
+      showing: true,
+    };
+
+    const result = hide(cart);
+
+    expect(result).toStrictEqual({
+      showing: false,
+    });
+  });
+});
+
+describe("contains", () => {
   it("true when in cart", () => {
     const cart = {
       products: [{ id: "1" }],
     };
 
-    const result = inCart(cart, { id: "1" });
+    const result = contains(cart, { id: "1" });
 
     expect(result).toEqual(true);
   });
@@ -16,16 +76,17 @@ describe("inCart", () => {
       products: [],
     };
 
-    const result = inCart(cart, { id: "1" });
+    const result = contains(cart, { id: "1" });
 
     expect(result).toEqual(false);
   });
 });
 
 describe("add", () => {
-  it("raises if product exsts", () => {
+  it("raises if product exists", () => {
     const cart = {
       products: [{ id: "1" }],
+      showing: false,
     };
 
     expect(() => {
@@ -36,12 +97,14 @@ describe("add", () => {
   it("adds when empty", () => {
     const cart = {
       products: [],
+      showing: false,
     };
 
     const result = add(cart, { id: "1" });
 
     expect(result).toStrictEqual({
       products: [{ id: "1" }],
+      showing: true,
     });
   });
 });
@@ -50,6 +113,7 @@ describe("remove", () => {
   it("raises if product not found", () => {
     const cart = {
       products: [],
+      showing: false,
     };
 
     expect(() => {
@@ -60,12 +124,14 @@ describe("remove", () => {
   it("removes when found", () => {
     const cart = {
       products: [{ id: "1" }],
+      showing: false,
     };
 
     const result = remove(cart, { id: "1" });
 
     expect(result).toStrictEqual({
       products: [],
+      showing: true,
     });
   });
 });
