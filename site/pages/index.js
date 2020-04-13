@@ -1,8 +1,5 @@
-import { flow } from "lodash/fp";
-
-import { buildClient, serialiseProducts } from "../services/shopify";
+import { buildClient, unpackEdges } from "../services/shopify";
 import { products as productsQuery } from "../services/shopify/queries";
-import { unpackResponse, serialise } from "../services/shopify/products";
 
 import Head from "next/head";
 import Content from "../components/UI/Content";
@@ -10,18 +7,20 @@ import ProductGrid from "../components/ProductGrid";
 
 export async function getStaticProps() {
   const client = buildClient();
-  const result = await client.graphQLClient.send(productsQuery(client));
-
-  const products = flow(unpackResponse, serialise)(result);
+  const products = await client.graphQLClient.send(productsQuery(client));
 
   return {
     props: {
-      products,
+      productsData: JSON.stringify(products),
     },
   };
 }
 
-const Home = ({ products }) => {
+const Home = ({ productsData }) => {
+  const products = JSON.parse(productsData).data.products.edges.map(
+    unpackEdges
+  );
+
   return (
     <>
       <Head>

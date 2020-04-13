@@ -7,15 +7,24 @@ const fields = (product) => {
   product.add("handle");
   product.add("title");
 
-  product.addConnection("metafields", { args: { first: 20 } }, (meta) => {
-    meta.add("id");
-    meta.add("key");
-    meta.add("value");
+  product.addConnection("metafields", { args: { first: 20 } }, (metafields) => {
+    metafields.add("id");
+    metafields.add("key");
+    metafields.add("value");
   });
 
-  product.addConnection("images", { args: { first: 3 } }, (meta) => {
-    meta.add("id");
-    meta.add("src");
+  product.addConnection("images", { args: { first: 3 } }, (images) => {
+    images.add("id");
+    images.add("src");
+  });
+
+  product.addConnection("variants", { args: { first: 1 } }, (variants) => {
+    variants.add("id");
+    variants.add("price");
+    variants.add("priceV2", (priceV2) => {
+      priceV2.add("amount");
+      priceV2.add("currencyCode");
+    });
   });
 
   return product;

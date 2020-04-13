@@ -1,14 +1,26 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import ShallowRenderer from "react-test-renderer/shallow";
 
 import ProductImage from "./ProductImage";
 
 it("renders correctly", () => {
   const product = {
-    src: "src",
+    images: {
+      edges: [
+        {
+          node: {
+            src: "src",
+          },
+        },
+      ],
+    },
   };
 
-  const tree = renderer.create(<ProductImage product={product} />).toJSON();
+  const renderer = new ShallowRenderer();
 
-  expect(tree).toMatchSnapshot();
+  renderer.render(<ProductImage product={product} />);
+
+  const result = renderer.getRenderOutput();
+
+  expect(result).toMatchSnapshot();
 });

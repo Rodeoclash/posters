@@ -1,7 +1,13 @@
-import { some, reject } from "lodash/fp";
-
 export class ProductNotFound extends Error {}
 export class ProductExists extends Error {}
+
+const productMatch = (product1, product2) => {
+  return product1.id === product2.id;
+};
+
+const productNoMatch = (product1, product2) => {
+  return !productMatch(product1, product2);
+};
 
 export const show = (cart) => {
   return {
@@ -18,7 +24,7 @@ export const hide = (cart) => {
 };
 
 export const contains = (cart, product) => {
-  return some(product)(cart.products);
+  return cart.products.some(productMatch.bind(this, product));
 };
 
 export const add = (cart, product) => {
@@ -39,6 +45,6 @@ export const remove = (cart, product) => {
 
   return {
     ...show(cart),
-    products: reject({ id: product.id })(cart.products),
+    products: cart.products.filter(productNoMatch.bind(this, product)),
   };
 };
