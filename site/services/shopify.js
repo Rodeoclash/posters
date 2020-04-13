@@ -9,3 +9,7 @@ export const buildClient = () => {
     storefrontAccessToken,
   });
 };
+
+export const unpackEdges = (edge) => {
+  return edge.node;
+};

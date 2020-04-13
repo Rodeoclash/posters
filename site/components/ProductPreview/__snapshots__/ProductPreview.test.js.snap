@@ -2,24 +2,46 @@
 
 exports[`renders correctly 1`] = `
 <div>
-  <a
-    href="/posters/test-poster-2"
-    onClick={[Function]}
-    onMouseEnter={[Function]}
+  <ProductLink
+    product={
+      Object {
+        "title": "title",
+      }
+    }
   >
-    <img
-      src="https://cdn.shopify.com/s/files/1/0380/1713/8733/products/mockup-29dc6c6a.png?v=1585737094"
+    <ProductImage
+      product={
+        Object {
+          "title": "title",
+        }
+      }
     />
-  </a>
+  </ProductLink>
   <div>
     <h3>
-      Test Poster 1
+      title
     </h3>
-    <button
-      onClick={[Function]}
-    >
-      Add to cart
-    </button>
+    <ProductAddToCart
+      product={
+        Object {
+          "title": "title",
+        }
+      }
+    />
+    <ProductInCart
+      product={
+        Object {
+          "title": "title",
+        }
+      }
+    />
+    <ProductPrice
+      product={
+        Object {
+          "title": "title",
+        }
+      }
+    />
   </div>
 </div>
 `;
