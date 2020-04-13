@@ -40,13 +40,14 @@ const Product = ({ productData }) => {
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <title>{product.title}</title>
+        <meta name="description" content={product.description} />
         <link
           href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800"
           rel="stylesheet"
         />
       </Head>
 
-      <Content>
+      <Content breadcrumb={product.title}>
         <ProductDetail product={product} />
       </Content>
     </>
