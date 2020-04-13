@@ -9,7 +9,7 @@ describe("snapshots", () => {
     const product = {};
 
     const contextValues = {
-      productInCart() {
+      contains() {
         return true;
       },
     };
@@ -27,7 +27,7 @@ describe("snapshots", () => {
     const product = {};
 
     const contextValues = {
-      productInCart() {
+      contains() {
         return false;
       },
     };

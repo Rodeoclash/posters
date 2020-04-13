@@ -1,18 +1,19 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import { product } from "../../support/fixtures";
+import ShallowRenderer from "react-test-renderer/shallow";
 
-import CartProvider from "../../providers/Cart";
 import ProductDetail from "./ProductDetail";
 
 it("renders correctly", () => {
-  const tree = renderer
-    .create(
-      <CartProvider>
-        <ProductDetail product={product} />
-      </CartProvider>
-    )
-    .toJSON();
+  const product = {
+    title: "title",
+    description: "description",
+  };
 
-  expect(tree).toMatchSnapshot();
+  const renderer = new ShallowRenderer();
+
+  renderer.render(<ProductDetail product={product} />);
+
+  const result = renderer.getRenderOutput();
+
+  expect(result).toMatchSnapshot();
 });

@@ -8,10 +8,11 @@ import styles from "./ProductPreview.module.css";
 
 const ProductPreview = ({ product }) => (
   <div className={styles.root}>
-    <ProductImage product={product} />
-    <h3>{product.title}</h3>
-    <div>
-      <ProductLink product={product}>View</ProductLink>
+    <ProductLink product={product}>
+      <ProductImage product={product} />
+    </ProductLink>
+    <div className={styles.meta}>
+      <h3 className={styles.title}>{product.title}</h3>
       <ProductAddToCart product={product} />
       <ProductInCart product={product} />
     </div>

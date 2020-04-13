@@ -15,8 +15,8 @@ import {
 } from "../../services/shopify/queries";
 
 import Cart from "../../components/Cart";
-import Head from "next/head";
 import Content from "../../components/UI/Content";
+import Head from "next/head";
 import ProductDetail from "../../components/ProductDetail";
 
 export async function getStaticPaths() {
@@ -50,6 +50,10 @@ const Product = ({ product }) => {
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content={product.metafields.description} />
         <title>{product.metafields.title}</title>
+        <link
+          href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800"
+          rel="stylesheet"
+        />
       </Head>
 
       <Content>

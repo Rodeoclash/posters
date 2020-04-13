@@ -1,9 +1,7 @@
-import { useContext } from "react";
-
-import CartContext from "../../contexts/cart";
+import { useCartContext } from "../../contexts/cart";
 
 const CartSize = () => {
-  const { size } = useContext(CartContext);
+  const { size } = useCartContext();
   const label = size === 1 ? "item" : "items";
 
   return (

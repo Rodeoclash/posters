@@ -6,7 +6,7 @@ import { unpackResponse, serialise } from "../services/shopify/products";
 
 import Head from "next/head";
 import Content from "../components/UI/Content";
-import Products from "../components/Products";
+import ProductGrid from "../components/ProductGrid";
 
 export async function getStaticProps() {
   const client = buildClient();
@@ -34,7 +34,7 @@ const Home = ({ products }) => {
       </Head>
 
       <Content>
-        <Products products={products} />
+        <ProductGrid products={products} />
       </Content>
     </>
   );

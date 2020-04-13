@@ -2,9 +2,9 @@ import { useContext } from "react";
 
 import ProductPreview from "../ProductPreview";
 
-import styles from "./Products.module.css";
+import styles from "./ProductGrid.module.css";
 
-const Products = ({ products }) => {
+const ProductGrid = ({ products }) => {
   const renderedProducts = products.map((product) => (
     <div className={styles.product} key={product.id}>
       <ProductPreview product={product} />
@@ -14,4 +14,4 @@ const Products = ({ products }) => {
   return <div className={styles.root}>{renderedProducts}</div>;
 };
 
-export default Products;
+export default ProductGrid;
