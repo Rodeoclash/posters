@@ -1,8 +1,8 @@
 import { buildClient, unpackEdges } from "../services/shopify";
 import { products as productsQuery } from "../services/shopify/queries";
 
-import Head from "next/head";
 import Content from "../components/UI/Content";
+import Head from "next/head";
 import ProductGrid from "../components/ProductGrid";
 
 export async function getStaticProps() {
@@ -20,6 +20,8 @@ const Home = ({ productsData }) => {
   const products = JSON.parse(productsData).data.products.edges.map(
     unpackEdges
   );
+
+  const breadcrumbs = [];
 
   return (
     <>
