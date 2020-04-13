@@ -1,6 +1,13 @@
 .root {
   column-gap: 10px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   row-gap: 1rem;
+}
+
+.product {
+}
+
+.hero {
+  grid-column: 1 / 3;
 }

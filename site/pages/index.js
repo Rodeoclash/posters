@@ -5,6 +5,8 @@ import Content from "../components/UI/Content";
 import Head from "next/head";
 import ProductGrid from "../components/ProductGrid";
 
+import styles from "./index.module.css";
+
 export async function getStaticProps() {
   const client = buildClient();
   const products = await client.graphQLClient.send(productsQuery(client));
@@ -21,8 +23,6 @@ const Home = ({ productsData }) => {
     unpackEdges
   );
 
-  const breadcrumbs = [];
-
   return (
     <>
       <Head>
@@ -35,7 +35,13 @@ const Home = ({ productsData }) => {
       </Head>
 
       <Content>
-        <ProductGrid products={products} />
+        <ProductGrid products={products}>
+          <p className={styles.hero}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam.
+          </p>
+        </ProductGrid>
       </Content>
     </>
   );
