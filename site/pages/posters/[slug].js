@@ -1,64 +1,57 @@
-import 'isomorphic-unfetch';
+import { buildClient, unpackEdges } from "../../services/shopify";
 
-import Head from 'next/head'
-import { buildClient, serialiseProducts, serialiseProduct } from '../../services/shopify';
+import {
+  products as productsQuery,
+  product as productQuery,
+} from "../../services/shopify/queries";
 
-import ProductThumbnail from '../../components/ProductThumbnail'
+import Cart from "../../components/Cart";
+import Content from "../../components/UI/Content";
+import Head from "next/head";
+import ProductDetail from "../../components/ProductDetail";
 
-export async function getStaticPaths(params) {
+export async function getStaticPaths() {
   const client = buildClient();
+  const productsData = await client.graphQLClient.send(productsQuery(client));
+  const products = productsData.data.products.edges.map(unpackEdges);
+  const paths = products.map((product) => `/posters/${product.handle}`);
 
-  const res = await client.product.fetchAll()
-  const products = serialiseProducts(res)
-
-  const paths = products.map(product => `/posters/${product.handle}`)
-
-  return { paths, fallback: false }
+  return { paths, fallback: false };
 }
 
-export async function getStaticProps(params) {
+export async function getStaticProps({ params }) {
   const client = buildClient();
-
-  const product = await client.product.fetchByHandle(params.params.slug);
+  const productData = await client.graphQLClient.send(
+    productQuery(client, params.slug)
+  );
 
   return {
     props: {
-      product: serialiseProduct(product),
-    }
-  }
+      productData: JSON.stringify(productData),
+    },
+  };
 }
 
-const Product = ({ product }) => {
-  
+const Product = ({ productData }) => {
+  const product = JSON.parse(productData).data.productByHandle;
+
   return (
-    <div className="container">
+    <>
       <Head>
-        <title>Product Page for {product.title}</title>
         <link rel="icon" href="/favicon.ico" />
+        <title>{product.title}</title>
+        <meta name="description" content={product.description} />
+        <link
+          href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800"
+          rel="stylesheet"
+        />
       </Head>
 
-      <main>
-        <ProductThumbnail product={product} />
-      </main>
+      <Content breadcrumb={product.title}>
+        <ProductDetail product={product} />
+      </Content>
+    </>
+  );
+};
 
-      <style jsx>{`
-        .container {
-        }
-
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-            Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-        }
-      `}</style>
-    </div>
-  )
-
-}
-
-export default Product
+export default Product;

@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <ProductLink
+    product={
+      Object {
+        "title": "title",
+      }
+    }
+  >
+    <ProductImage
+      product={
+        Object {
+          "title": "title",
+        }
+      }
+    />
+  </ProductLink>
+  <div>
+    <h3>
+      title
+    </h3>
+    <ProductAddToCart
+      product={
+        Object {
+          "title": "title",
+        }
+      }
+    />
+    <ProductInCart
+      product={
+        Object {
+          "title": "title",
+        }
+      }
+    />
+    <ProductPrice
+      product={
+        Object {
+          "title": "title",
+        }
+      }
+    />
+  </div>
+</div>
+`;

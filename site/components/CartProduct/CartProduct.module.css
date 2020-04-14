@@ -1,0 +1,12 @@
+.root {
+  display: flex;
+}
+
+.image {
+  width: 4rem;
+  margin-right: 1rem;
+}
+
+.title {
+  margin: 0;
+}

@@ -1,0 +1,32 @@
+.wrapper {
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  padding: 0 1rem;
+}
+
+.breadcrumbs {
+  display: flex;
+  list-style: none;
+  margin: 1rem 0;
+  padding: 0;
+}
+
+.breadcrumbs li::after {
+  content: ">";
+  margin: 0 0.5rem;
+}
+
+.breadcrumbs li:last-child::after {
+  content: "";
+  margin-right: 0;
+}
+
+.branding {
+  flex-grow: 1;
+}
+
+.main {
+}

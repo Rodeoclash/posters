@@ -1,55 +1,49 @@
-import "isomorphic-unfetch";
+import { buildClient, unpackEdges } from "../services/shopify";
+import { products as productsQuery } from "../services/shopify/queries";
 
+import Content from "../components/UI/Content";
 import Head from "next/head";
-import { buildClient, serialiseProducts } from "../services/shopify";
+import ProductGrid from "../components/ProductGrid";
 
-import ProductThumbnail from "../components/ProductThumbnail";
+import styles from "./index.module.css";
 
 export async function getStaticProps() {
   const client = buildClient();
-
-  const products = await client.product.fetchAll();
+  const products = await client.graphQLClient.send(productsQuery(client));
 
   return {
     props: {
-      products: serialiseProducts(products),
+      productsData: JSON.stringify(products),
     },
   };
 }
 
-const Home = ({ products }) => {
-  const renderedProducts = products.map((product) => (
-    <React.Fragment key={product.id}>
-      <ProductThumbnail product={product} />
-      <hr />
-    </React.Fragment>
-  ));
+const Home = ({ productsData }) => {
+  const products = JSON.parse(productsData).data.products.edges.map(
+    unpackEdges
+  );
 
   return (
-    <div className="container">
+    <>
       <Head>
-        <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
+        <title>Scientific Posters</title>
+        <link
+          href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800"
+          rel="stylesheet"
+        />
       </Head>
 
-      <main>{renderedProducts}</main>
-
-      <style jsx>{`
-        .container {
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-      `}</style>
-    </div>
+      <Content>
+        <ProductGrid products={products}>
+          <p className={styles.hero}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam.
+          </p>
+        </ProductGrid>
+      </Content>
+    </>
   );
 };
 
