@@ -10,6 +10,10 @@ import Content from "../../components/UI/Content";
 import Head from "next/head";
 import ProductDetail from "../../components/ProductDetail";
 
+import React from 'react';
+import { NextSeo } from 'next-seo';
+import { BreadcrumbJsonLd } from 'next-seo';
+
 export async function getStaticPaths() {
   const client = buildClient();
   const productsData = await client.graphQLClient.send(productsQuery(client));
@@ -37,10 +41,23 @@ const Product = ({ productData }) => {
 
   return (
     <>
+      <NextSeo title={product.title} description={product.description} />
+      <BreadcrumbJsonLd
+        itemListElements = {[
+          {
+            position: 1,
+            name: 'Posters',
+            item: 'https://posters.com/posters'    
+          }
+        ]}
+      />
+      <ImageJsonLd
+        url="https://posters.com/poster/poster.jpg"
+        license="https://posters.com/imageLicense"
+        acquireLicensePage="https://posters.com/acquireLicensePage"
+      />
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <title>{product.title}</title>
-        <meta name="description" content={product.description} />
         <link
           href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800"
           rel="stylesheet"

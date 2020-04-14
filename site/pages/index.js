@@ -5,6 +5,9 @@ import Content from "../components/UI/Content";
 import Head from "next/head";
 import ProductGrid from "../components/ProductGrid";
 
+import React from 'react';
+import { NextSeo } from 'next-seo';
+
 import styles from "./index.module.css";
 
 export async function getStaticProps() {
@@ -25,9 +28,9 @@ const Home = ({ productsData }) => {
 
   return (
     <>
+      <NextSeo title={'Scientific Posters'} />
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <title>Scientific Posters</title>
         <link
           href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800"
           rel="stylesheet"

@@ -11,6 +11,7 @@
   "dependencies": {
     "isomorphic-unfetch": "^3.0.0",
     "next": "9.3.2",
+    "next-seo": "git@github.com:rjaus/next-seo.git",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "shopify-buy": "^2.9.2"
