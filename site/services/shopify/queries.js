@@ -20,10 +20,16 @@ const fields = (product) => {
 
   product.addConnection("variants", { args: { first: 1 } }, (variants) => {
     variants.add("id");
-    variants.add("price");
+    variants.add("title");
     variants.add("priceV2", (priceV2) => {
       priceV2.add("amount");
       priceV2.add("currencyCode");
+    });
+    variants.add("product", (product) => {
+      product.add("id");
+      product.add("description");
+      product.add("handle");
+      product.add("title");
     });
   });
 
