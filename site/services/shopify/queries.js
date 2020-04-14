@@ -30,6 +30,21 @@ const fields = (product) => {
       product.add("description");
       product.add("handle");
       product.add("title");
+
+      product.addConnection(
+        "metafields",
+        { args: { first: 20 } },
+        (metafields) => {
+          metafields.add("id");
+          metafields.add("key");
+          metafields.add("value");
+        }
+      );
+
+      product.addConnection("images", { args: { first: 3 } }, (images) => {
+        images.add("id");
+        images.add("src");
+      });
     });
   });
 

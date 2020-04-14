@@ -3,11 +3,11 @@ import renderer from "react-test-renderer";
 import { fireEvent, render } from "@testing-library/react";
 
 import * as CartContext from "../../contexts/cart";
-import CartProductRemove from "./CartProductRemove";
+import CartVariantRemove from "./CartVariantRemove";
 
 describe("onClick", () => {
-  it("calls function to remove product from cart", () => {
-    const product = {};
+  it("calls function to remove variant from cart", () => {
+    const variant = {};
     const remove = jest.fn();
 
     const contextValues = {
@@ -21,17 +21,17 @@ describe("onClick", () => {
       .spyOn(CartContext, "useCartContext")
       .mockImplementation(() => contextValues);
 
-    const { getByText } = render(<CartProductRemove product={product} />);
+    const { getByText } = render(<CartVariantRemove variant={variant} />);
 
-    fireEvent.click(getByText("Remove product"));
+    fireEvent.click(getByText("Remove"));
 
-    expect(remove).toHaveBeenCalledWith(product, expect.anything());
+    expect(remove).toHaveBeenCalledWith(variant, expect.anything());
   });
 });
 
 describe("snapshots", () => {
-  it("with product in the cart", () => {
-    const product = {};
+  it("with variant in the cart", () => {
+    const variant = {};
     const remove = jest.fn();
 
     const contextValues = {
@@ -46,14 +46,14 @@ describe("snapshots", () => {
       .mockImplementation(() => contextValues);
 
     const tree = renderer
-      .create(<CartProductRemove product={product} />)
+      .create(<CartVariantRemove variant={variant} />)
       .toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
-  it("with product not in the cart", () => {
-    const product = {};
+  it("with variant not in the cart", () => {
+    const variant = {};
     const remove = jest.fn();
 
     const contextValues = {
@@ -68,7 +68,7 @@ describe("snapshots", () => {
       .mockImplementation(() => contextValues);
 
     const tree = renderer
-      .create(<CartProductRemove product={product} />)
+      .create(<CartVariantRemove variant={variant} />)
       .toJSON();
 
     expect(tree).toMatchSnapshot();

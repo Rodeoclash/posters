@@ -4,24 +4,24 @@ import * as cart from "../services/cart";
 
 const CartProvider = ({ children }) => {
   const [cartState, setCartState] = useState({
-    products: [],
+    variants: [],
     showing: false,
   });
 
-  const add = (product) => {
-    setCartState(cart.add(cartState, product));
+  const add = (variant) => {
+    setCartState(cart.add(cartState, variant));
   };
 
-  const contains = (product) => {
-    return cart.contains(cartState, product);
+  const contains = (variant) => {
+    return cart.contains(cartState, variant);
   };
 
   const hide = () => {
     setCartState(cart.hide(cartState));
   };
 
-  const remove = (product) => {
-    setCartState(cart.remove(cartState, product));
+  const remove = (variant) => {
+    setCartState(cart.remove(cartState, variant));
   };
 
   const show = () => {
@@ -32,11 +32,11 @@ const CartProvider = ({ children }) => {
     add,
     contains,
     hide,
-    products: cartState.products,
     remove,
     show,
     showing: cartState.showing,
-    size: cartState.products.length,
+    size: cartState.variants.length,
+    variants: cartState.variants,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

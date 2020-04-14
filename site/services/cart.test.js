@@ -1,6 +1,6 @@
 import {
-  ProductExists,
-  ProductNotFound,
+  VariantExists,
+  VariantNotFound,
   add,
   hide,
   contains,
@@ -63,7 +63,7 @@ describe("hide", () => {
 describe("contains", () => {
   it("true when in cart", () => {
     const cart = {
-      products: [{ id: "1" }],
+      variants: [{ id: "1" }],
     };
 
     const result = contains(cart, { id: "1" });
@@ -73,7 +73,7 @@ describe("contains", () => {
 
   it("false when not in cart", () => {
     const cart = {
-      products: [],
+      variants: [],
     };
 
     const result = contains(cart, { id: "1" });
@@ -83,54 +83,54 @@ describe("contains", () => {
 });
 
 describe("add", () => {
-  it("raises if product exists", () => {
+  it("raises if variant exists", () => {
     const cart = {
-      products: [{ id: "1" }],
+      variants: [{ id: "1" }],
       showing: false,
     };
 
     expect(() => {
       add(cart, { id: "1" });
-    }).toThrow(ProductExists);
+    }).toThrow(VariantExists);
   });
 
   it("adds when empty", () => {
     const cart = {
-      products: [],
+      variants: [],
       showing: false,
     };
 
     const result = add(cart, { id: "1" });
 
     expect(result).toStrictEqual({
-      products: [{ id: "1" }],
+      variants: [{ id: "1" }],
       showing: true,
     });
   });
 });
 
 describe("remove", () => {
-  it("raises if product not found", () => {
+  it("raises if variant not found", () => {
     const cart = {
-      products: [],
+      variants: [],
       showing: false,
     };
 
     expect(() => {
       remove(cart, { id: "1" });
-    }).toThrow(ProductNotFound);
+    }).toThrow(VariantNotFound);
   });
 
   it("removes when found", () => {
     const cart = {
-      products: [{ id: "1" }],
+      variants: [{ id: "1" }],
       showing: false,
     };
 
     const result = remove(cart, { id: "1" });
 
     expect(result).toStrictEqual({
-      products: [],
+      variants: [],
       showing: true,
     });
   });

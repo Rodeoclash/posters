@@ -1,12 +1,12 @@
-export class ProductNotFound extends Error {}
-export class ProductExists extends Error {}
+export class VariantNotFound extends Error {}
+export class VariantExists extends Error {}
 
-const productMatch = (product1, product2) => {
-  return product1.id === product2.id;
+const variantMatch = (variant1, variant2) => {
+  return variant1.id === variant2.id;
 };
 
-const productNoMatch = (product1, product2) => {
-  return !productMatch(product1, product2);
+const variantNoMatch = (variant1, variant2) => {
+  return !variantMatch(variant1, variant2);
 };
 
 export const show = (cart) => {
@@ -23,28 +23,28 @@ export const hide = (cart) => {
   };
 };
 
-export const contains = (cart, product) => {
-  return cart.products.some(productMatch.bind(this, product));
+export const contains = (cart, variant) => {
+  return cart.variants.some(variantMatch.bind(this, variant));
 };
 
-export const add = (cart, product) => {
-  if (contains(cart, product) === true) {
-    throw new ProductExists();
+export const add = (cart, variant) => {
+  if (contains(cart, variant) === true) {
+    throw new VariantExists();
   }
 
   return {
     ...show(cart),
-    products: cart.products.concat([product]),
+    variants: cart.variants.concat([variant]),
   };
 };
 
-export const remove = (cart, product) => {
-  if (contains(cart, product) === false) {
-    throw new ProductNotFound();
+export const remove = (cart, variant) => {
+  if (contains(cart, variant) === false) {
+    throw new VariantNotFound();
   }
 
   return {
     ...show(cart),
-    products: cart.products.filter(productNoMatch.bind(this, product)),
+    variants: cart.variants.filter(variantNoMatch.bind(this, variant)),
   };
 };

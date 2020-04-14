@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useCartContext } from "../../contexts/cart";
 
-import CartProducts from "../CartProducts";
+import CartVariants from "../CartVariants";
 import CartSize from "../CartSize";
 
 import styles from "./Cart.module.css";
@@ -27,7 +27,7 @@ const Cart = () => {
     if (showing === true && size > 0) {
       return (
         <div className={styles.contents}>
-          <CartProducts />
+          <CartVariants />
           <div className={styles.controls}>
             <button onClick={handleCloseClick}>Close</button>
             <button onClick={handleCheckoutClick}>Checkout</button>

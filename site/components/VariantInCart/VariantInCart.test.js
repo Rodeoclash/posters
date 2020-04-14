@@ -2,11 +2,11 @@ import React from "react";
 import renderer from "react-test-renderer";
 
 import * as CartContext from "../../contexts/cart";
-import ProductInCart from "./ProductInCart";
+import VariantInCart from "./VariantInCart";
 
 describe("snapshots", () => {
-  it("with product in the cart", () => {
-    const product = {};
+  it("with variant in the cart", () => {
+    const variant = {};
 
     const contextValues = {
       contains() {
@@ -18,13 +18,13 @@ describe("snapshots", () => {
       .spyOn(CartContext, "useCartContext")
       .mockImplementation(() => contextValues);
 
-    const tree = renderer.create(<ProductInCart product={product} />).toJSON();
+    const tree = renderer.create(<VariantInCart variant={variant} />).toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
-  it("with product not in the cart", () => {
-    const product = {};
+  it("with variant not in the cart", () => {
+    const variant = {};
 
     const contextValues = {
       contains() {
@@ -36,7 +36,7 @@ describe("snapshots", () => {
       .spyOn(CartContext, "useCartContext")
       .mockImplementation(() => contextValues);
 
-    const tree = renderer.create(<ProductInCart product={product} />).toJSON();
+    const tree = renderer.create(<VariantInCart variant={variant} />).toJSON();
 
     expect(tree).toMatchSnapshot();
   });

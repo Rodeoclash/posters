@@ -6,6 +6,13 @@ exports[`renders correctly 1`] = `
     product={
       Object {
         "title": "title",
+        "variants": Object {
+          "edges": Array [
+            Object {
+              "node": Object {},
+            },
+          ],
+        },
       }
     }
   >
@@ -13,6 +20,13 @@ exports[`renders correctly 1`] = `
       product={
         Object {
           "title": "title",
+          "variants": Object {
+            "edges": Array [
+              Object {
+                "node": Object {},
+              },
+            ],
+          },
         }
       }
     />
@@ -21,26 +35,14 @@ exports[`renders correctly 1`] = `
     <h3>
       title
     </h3>
-    <ProductAddToCart
-      product={
-        Object {
-          "title": "title",
-        }
-      }
+    <VariantAddToCart
+      variant={Object {}}
     />
-    <ProductInCart
-      product={
-        Object {
-          "title": "title",
-        }
-      }
+    <VariantInCart
+      variant={Object {}}
     />
-    <ProductPrice
-      product={
-        Object {
-          "title": "title",
-        }
-      }
+    <VariantPrice
+      variant={Object {}}
     />
   </div>
 </div>

@@ -8,6 +8,13 @@ exports[`renders correctly 1`] = `
         Object {
           "description": "description",
           "title": "title",
+          "variants": Object {
+            "edges": Array [
+              Object {
+                "node": Object {},
+              },
+            ],
+          },
         }
       }
     />
@@ -20,21 +27,11 @@ exports[`renders correctly 1`] = `
       description
     </p>
     <div>
-      <ProductAddToCart
-        product={
-          Object {
-            "description": "description",
-            "title": "title",
-          }
-        }
+      <VariantAddToCart
+        variant={Object {}}
       />
-      <ProductInCart
-        product={
-          Object {
-            "description": "description",
-            "title": "title",
-          }
-        }
+      <VariantInCart
+        variant={Object {}}
       />
       <p>
         <Homelink />
