@@ -1,14 +1,123 @@
-export class VariantNotFound extends Error {}
-export class VariantExists extends Error {}
+import { buildClient } from "../services/shopify";
 
-const variantMatch = (variant1, variant2) => {
-  return variant1.id === variant2.id;
+export class CheckoutIdMissing extends Error {}
+
+// Private
+
+const client = buildClient();
+
+const CHECKOUT_ID = "CHECKOUT_ID";
+
+const getCheckoutId = () => {
+  return localStorage.getItem(CHECKOUT_ID);
 };
 
-const variantNoMatch = (variant1, variant2) => {
-  return !variantMatch(variant1, variant2);
+const setCheckoutId = (id) => {
+  return localStorage.setItem(CHECKOUT_ID, id);
 };
 
+// Getters
+
+export const exists = () => {
+  return getCheckoutId() !== null;
+};
+
+export const contains = (cart, variant) => {
+  return (
+    cart.checkout !== null &&
+    cart.checkout.lineItems.some((lineItem) => {
+      return lineItem.variant.id === variant.id;
+    })
+  );
+};
+
+export const size = (cart) => {
+  return cart.checkout === null ? 0 : cart.checkout.lineItems.length;
+};
+
+export const lineItems = (cart) => {
+  return cart.checkout === null ? [] : cart.checkout.lineItems;
+};
+
+export const busy = (cart) => {
+  return cart.busy === true;
+};
+
+export const showing = (cart) => {
+  return cart.showing === true && size(cart) > 0;
+};
+
+// Setters
+
+/**
+ * Adds a varient to the cart
+ */
+export const add = async (cart, variant) => {
+  const lineItemsToAdd = [
+    {
+      variantId: variant.id,
+      quantity: 1,
+    },
+  ];
+
+  const checkout = await client.checkout.addLineItems(
+    getCheckoutId(),
+    lineItemsToAdd
+  );
+
+  return {
+    ...cart,
+    checkout,
+  };
+};
+
+export const remove = async (cart, lineItem) => {
+  const lineItemIdsToRemove = [lineItem.id];
+
+  const checkout = await client.checkout.removeLineItems(
+    getCheckoutId(),
+    lineItemIdsToRemove
+  );
+
+  return {
+    ...cart,
+    checkout,
+  };
+};
+
+/**
+ * Creates a new cart and stores the cart id
+ */
+export const create = async (cart) => {
+  const checkout = await client.checkout.create();
+
+  setCheckoutId(checkout.id);
+
+  return {
+    ...cart,
+    checkout,
+  };
+};
+
+/**
+ * Fetch the cart. Check if it is possible to fetch a cart first using the checkout id.
+ */
+export const fetch = async (cart) => {
+  if (exists() === false) {
+    throw new CheckoutIdMissing();
+  }
+
+  const checkout = await client.checkout.fetch(getCheckoutId());
+
+  return {
+    ...cart,
+    checkout,
+  };
+};
+
+/**
+ * Show the cart (used in cart toggle dropdown)
+ */
 export const show = (cart) => {
   return {
     ...cart,
@@ -16,6 +125,9 @@ export const show = (cart) => {
   };
 };
 
+/**
+ * Hide the cart (used in cart toggle dropdown)
+ */
 export const hide = (cart) => {
   return {
     ...cart,
@@ -23,28 +135,22 @@ export const hide = (cart) => {
   };
 };
 
-export const contains = (cart, variant) => {
-  return cart.variants.some(variantMatch.bind(this, variant));
-};
-
-export const add = (cart, variant) => {
-  if (contains(cart, variant) === true) {
-    throw new VariantExists();
-  }
-
+/**
+ * Show that the cart is busy doing something
+ */
+export const ready = (cart) => {
   return {
-    ...show(cart),
-    variants: cart.variants.concat([variant]),
+    ...cart,
+    busy: false,
   };
 };
 
-export const remove = (cart, variant) => {
-  if (contains(cart, variant) === false) {
-    throw new VariantNotFound();
-  }
-
+/**
+ * Show the cart is ready for actions
+ */
+export const working = (cart) => {
   return {
-    ...show(cart),
-    variants: cart.variants.filter(variantNoMatch.bind(this, variant)),
+    ...cart,
+    busy: true,
   };
 };

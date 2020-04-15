@@ -1,13 +1,22 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useCartContext } from "../../contexts/cart";
 
-import CartVariants from "../CartVariants";
 import CartSize from "../CartSize";
+import CartLineItems from "../CartLineItems";
 
 import styles from "./Cart.module.css";
 
 const Cart = () => {
-  const { hide, show, showing, size } = useCartContext();
+  const {
+    busy,
+    checkout,
+    fetch,
+    hide,
+    initialize,
+    lineItems,
+    show,
+    showing,
+  } = useCartContext();
 
   const panelEl = useRef(null);
 
@@ -24,10 +33,10 @@ const Cart = () => {
   };
 
   const renderedContents = (() => {
-    if (showing === true && size > 0) {
+    if (showing === true && checkout !== null) {
       return (
         <div className={styles.contents}>
-          <CartVariants />
+          <CartLineItems lineItems={lineItems} />
           <div className={styles.controls}>
             <button onClick={handleCloseClick}>Close</button>
             <button onClick={handleCheckoutClick}>Checkout</button>
@@ -39,10 +48,22 @@ const Cart = () => {
     }
   })();
 
+  const renderedBusy = (() => {
+    if (busy === true) {
+      return <em>Processing...</em>;
+    } else {
+      return null;
+    }
+  })();
+
+  useEffect(() => {
+    fetch();
+  }, []);
+
   return (
     <div ref={panelEl} className={styles.root}>
       <a onClick={handleCartClick}>
-        Your cart (<CartSize />)
+        Your cart (<CartSize />) {renderedBusy}
       </a>
       {renderedContents}
     </div>

@@ -2,6 +2,7 @@ import { createContext, useContext } from "react";
 
 const CartContext = createContext({
   add: () => {},
+  busy: false,
   contains: () => {},
   hide: () => {},
   remove: () => {},
