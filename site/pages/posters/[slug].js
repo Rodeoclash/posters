@@ -11,8 +11,7 @@ import Head from "next/head";
 import ProductDetail from "../../components/ProductDetail";
 
 import React from 'react';
-import { NextSeo } from 'next-seo';
-import { BreadcrumbJsonLd } from 'next-seo';
+import { NextSeo, BreadcrumbJsonLd, ImageJsonLd } from 'next-seo';
 
 export async function getStaticPaths() {
   const client = buildClient();
