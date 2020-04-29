@@ -17,9 +17,7 @@ const CartLineItem = ({ lineItem }) => {
         </ProductLink>
       </div>
       <div className={styles.content}>
-        <h4 className={styles.title}>
-          {lineItem.title}
-        </h4>
+        <h4 className={styles.title}>{lineItem.title}</h4>
         <VariantPrice variant={variant} />
         <LineItemRemoveFromCart lineItem={lineItem} />
         <ProductLink product={product} />

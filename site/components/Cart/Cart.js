@@ -39,7 +39,12 @@ const Cart = () => {
           <CartLineItems lineItems={lineItems} />
           <div className={styles.controls}>
             <button onClick={handleCloseClick}>Close</button>
-            <button disabled={busy || orderable === false} onClick={handleCheckoutClick}>Checkout</button>
+            <button
+              disabled={busy || orderable === false}
+              onClick={handleCheckoutClick}
+            >
+              Checkout
+            </button>
           </div>
         </div>
       );

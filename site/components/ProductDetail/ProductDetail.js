@@ -8,7 +8,7 @@ import VariantInCart from "../VariantInCart";
 import styles from "./ProductDetail.module.css";
 
 const ProductDetail = ({ product }) => {
-  const variant = product.variants[0]
+  const variant = product.variants[0];
 
   return (
     <div className={styles.root}>

@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const client = buildClient();
 
-  const productData = await client.product.fetchByHandle(params.handle)
+  const productData = await client.product.fetchByHandle(params.handle);
 
   return {
     props: {
