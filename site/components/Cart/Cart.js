@@ -9,11 +9,11 @@ import styles from "./Cart.module.css";
 const Cart = () => {
   const {
     busy,
-    checkout,
     fetch,
     hide,
-    initialize,
     lineItems,
+    order,
+    orderable,
     show,
     showing,
   } = useCartContext();
@@ -29,17 +29,17 @@ const Cart = () => {
   };
 
   const handleCheckoutClick = (event) => {
-    alert("do checkout");
+    order();
   };
 
   const renderedContents = (() => {
-    if (showing === true && checkout !== null) {
+    if (showing === true) {
       return (
         <div className={styles.contents}>
           <CartLineItems lineItems={lineItems} />
           <div className={styles.controls}>
             <button onClick={handleCloseClick}>Close</button>
-            <button onClick={handleCheckoutClick}>Checkout</button>
+            <button disabled={busy || orderable === false} onClick={handleCheckoutClick}>Checkout</button>
           </div>
         </div>
       );

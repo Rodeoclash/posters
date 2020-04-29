@@ -1,5 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`snapshots with variant in the cart 1`] = `null`;
+exports[`snapshots with variant in the cart 1`] = `
+<em>
+  This item is in your cart
+</em>
+`;
 
 exports[`snapshots with variant not in the cart 1`] = `null`;

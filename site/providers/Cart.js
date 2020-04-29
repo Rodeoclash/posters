@@ -59,16 +59,25 @@ const CartProvider = ({ children }) => {
     setCartState(cart.hide(cartState));
   };
 
+  const order = async (variant) => {
+    const busyCart = cart.working(cartState);
+    setCartState(busyCart);
+
+    document.location = cartState.checkout.webUrl;
+  };
+
   console.log("=== cartState");
   console.log(cartState);
 
   const value = {
     add,
-    busy: cart.busy(cartState),
+    busy: cartState.busy,
     contains: cart.contains.bind(this, cartState),
     fetch,
     hide,
     lineItems: cart.lineItems(cartState),
+    order,
+    orderable: cart.orderable(cartState),
     remove,
     show,
     showing: cart.showing(cartState),

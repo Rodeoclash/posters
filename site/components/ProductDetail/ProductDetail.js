@@ -1,21 +1,19 @@
-import { unpackEdges } from "../../services/shopify";
-
 import Homelink from "../../components/UI/Homelink";
 import Link from "next/link";
-import ProductImage from "../ProductImage";
 import ProductLink from "../ProductLink";
 import VariantAddToCart from "../VariantAddToCart";
+import VariantImage from "../VariantImage";
 import VariantInCart from "../VariantInCart";
 
 import styles from "./ProductDetail.module.css";
 
 const ProductDetail = ({ product }) => {
-  const variant = product.variants.edges.map(unpackEdges)[0];
+  const variant = product.variants[0]
 
   return (
     <div className={styles.root}>
       <div className={styles.image}>
-        <ProductImage product={product} />
+        <VariantImage variant={variant} />
       </div>
       <div className={styles.about}>
         <h3>{product.title}</h3>

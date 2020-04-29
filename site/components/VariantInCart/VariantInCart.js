@@ -1,8 +1,6 @@
 import { useCartContext } from "../../contexts/cart";
 
 const VariantInCart = ({ variant }) => {
-  return null;
-
   const { contains } = useCartContext();
 
   if (contains(variant) === false) {

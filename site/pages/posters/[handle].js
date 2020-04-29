@@ -1,9 +1,4 @@
-import { buildClient, unpackEdges } from "../../services/shopify";
-
-import {
-  products as productsQuery,
-  product as productQuery,
-} from "../../services/shopify/queries";
+import { buildClient } from "../../services/shopify";
 
 import Cart from "../../components/Cart";
 import Content from "../../components/UI/Content";
@@ -12,8 +7,7 @@ import ProductDetail from "../../components/ProductDetail";
 
 export async function getStaticPaths() {
   const client = buildClient();
-  const productsData = await client.graphQLClient.send(productsQuery(client));
-  const products = productsData.data.products.edges.map(unpackEdges);
+  const products = await client.product.fetchAll();
   const paths = products.map((product) => `/posters/${product.handle}`);
 
   return { paths, fallback: false };
@@ -21,9 +15,8 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const client = buildClient();
-  const productData = await client.graphQLClient.send(
-    productQuery(client, params.slug)
-  );
+
+  const productData = await client.product.fetchByHandle(params.handle)
 
   return {
     props: {
@@ -33,7 +26,7 @@ export async function getStaticProps({ params }) {
 }
 
 const Product = ({ productData }) => {
-  const product = JSON.parse(productData).data.productByHandle;
+  const product = JSON.parse(productData);
 
   return (
     <>

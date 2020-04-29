@@ -39,12 +39,12 @@ export const lineItems = (cart) => {
   return cart.checkout === null ? [] : cart.checkout.lineItems;
 };
 
-export const busy = (cart) => {
-  return cart.busy === true;
-};
-
 export const showing = (cart) => {
   return cart.showing === true && size(cart) > 0;
+};
+
+export const orderable = (cart) => {
+  return cart.checkout !== null && cart.checkout.webUrl;
 };
 
 // Setters
@@ -136,7 +136,7 @@ export const hide = (cart) => {
 };
 
 /**
- * Show that the cart is busy doing something
+ * Show the cart is ready for actions
  */
 export const ready = (cart) => {
   return {
@@ -146,7 +146,7 @@ export const ready = (cart) => {
 };
 
 /**
- * Show the cart is ready for actions
+ * Show that the cart is busy doing something
  */
 export const working = (cart) => {
   return {

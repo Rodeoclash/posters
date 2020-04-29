@@ -16,34 +16,15 @@ exports[`renders correctly 1`] = `
       }
     }
   >
-    <ProductImage
-      product={
-        Object {
-          "title": "title",
-          "variants": Object {
-            "edges": Array [
-              Object {
-                "node": Object {},
-              },
-            ],
-          },
-        }
-      }
-    />
+    <VariantImage />
   </ProductLink>
   <div>
     <h3>
       title
     </h3>
-    <VariantAddToCart
-      variant={Object {}}
-    />
-    <VariantInCart
-      variant={Object {}}
-    />
-    <VariantPrice
-      variant={Object {}}
-    />
+    <VariantAddToCart />
+    <VariantInCart />
+    <VariantPrice />
   </div>
 </div>
 `;

@@ -3,21 +3,7 @@
 exports[`renders correctly 1`] = `
 <div>
   <div>
-    <ProductImage
-      product={
-        Object {
-          "description": "description",
-          "title": "title",
-          "variants": Object {
-            "edges": Array [
-              Object {
-                "node": Object {},
-              },
-            ],
-          },
-        }
-      }
-    />
+    <VariantImage />
   </div>
   <div>
     <h3>
@@ -27,12 +13,8 @@ exports[`renders correctly 1`] = `
       description
     </p>
     <div>
-      <VariantAddToCart
-        variant={Object {}}
-      />
-      <VariantInCart
-        variant={Object {}}
-      />
+      <VariantAddToCart />
+      <VariantInCart />
       <p>
         <Homelink />
       </p>

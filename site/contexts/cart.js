@@ -4,12 +4,15 @@ const CartContext = createContext({
   add: () => {},
   busy: false,
   contains: () => {},
+  fetch: () => {},
   hide: () => {},
+  lineItems: [],
+  order: () => {},
+  orderable: false,
   remove: () => {},
   show: () => {},
   showing: false,
   size: 0,
-  variants: [],
 });
 
 export const useCartContext = () => useContext(CartContext);
