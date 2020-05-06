@@ -2,9 +2,13 @@ import { createContext, useContext } from "react";
 
 const CartContext = createContext({
   add: () => {},
+  busy: false,
   contains: () => {},
+  fetch: () => {},
   hide: () => {},
-  products: [],
+  lineItems: [],
+  order: () => {},
+  orderable: false,
   remove: () => {},
   show: () => {},
   showing: false,

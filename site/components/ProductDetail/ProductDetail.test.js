@@ -7,6 +7,13 @@ it("renders correctly", () => {
   const product = {
     title: "title",
     description: "description",
+    variants: {
+      edges: [
+        {
+          node: {},
+        },
+      ],
+    },
   };
 
   const renderer = new ShallowRenderer();

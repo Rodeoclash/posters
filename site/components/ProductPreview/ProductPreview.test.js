@@ -6,6 +6,13 @@ import ProductPreview from "./ProductPreview";
 it("renders correctly", () => {
   const product = {
     title: "title",
+    variants: {
+      edges: [
+        {
+          node: {},
+        },
+      ],
+    },
   };
 
   const renderer = new ShallowRenderer();

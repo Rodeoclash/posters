@@ -1,5 +1,4 @@
-import { buildClient, unpackEdges } from "../services/shopify";
-import { products as productsQuery } from "../services/shopify/queries";
+import { buildClient } from "../services/shopify";
 
 import Content from "../components/UI/Content";
 import Head from "next/head";
@@ -12,7 +11,7 @@ import styles from "./index.module.css";
 
 export async function getStaticProps() {
   const client = buildClient();
-  const products = await client.graphQLClient.send(productsQuery(client));
+  const products = await client.product.fetchAll();
 
   return {
     props: {
@@ -22,9 +21,7 @@ export async function getStaticProps() {
 }
 
 const Home = ({ productsData }) => {
-  const products = JSON.parse(productsData).data.products.edges.map(
-    unpackEdges
-  );
+  const products = JSON.parse(productsData);
 
   return (
     <>
