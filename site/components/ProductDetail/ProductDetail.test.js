@@ -6,7 +6,7 @@ import ProductDetail from "./ProductDetail";
 it("renders correctly", () => {
   const product = {
     title: "title",
-    description: "description",
+    description: "{}",
     variants: {
       edges: [
         {
