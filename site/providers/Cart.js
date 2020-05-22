@@ -66,9 +66,6 @@ const CartProvider = ({ children }) => {
     document.location = cartState.checkout.webUrl;
   };
 
-  console.log("=== cartState");
-  console.log(cartState);
-
   const value = {
     add,
     busy: cartState.busy,
