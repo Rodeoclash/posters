@@ -9,10 +9,10 @@ import styles from "./ProductDetail.module.css";
 
 const ProductDetail = ({ product }) => {
   const variant = product.variants[0];
-  const { meta, description } = JSON.parse(product.description);
+  const { title, description } = JSON.parse(product.description);
 
-  console.log("=== product meta");
-  console.log(meta);
+  // console.log("=== product description data");
+  // console.log(description);
 
   return (
     <div className={styles.root}>
@@ -20,7 +20,7 @@ const ProductDetail = ({ product }) => {
         <VariantImage variant={variant} />
       </div>
       <div className={styles.about}>
-        <h3>{product.title}</h3>
+        <h3>{title}</h3>
         <p>{description}</p>
         <div>
           <VariantAddToCart variant={variant} />

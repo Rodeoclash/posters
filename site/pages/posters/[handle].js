@@ -28,12 +28,14 @@ export async function getStaticProps({ params }) {
   };
 }
 
+
 const Product = ({ productData }) => {
   const product = JSON.parse(productData);
+  const productMeta = JSON.parse(product.description);
 
   return (
     <>
-      <NextSeo title={product.title} description={product.description} />
+      <NextSeo title={productMeta.title} description={productMeta.description} />
       <BreadcrumbJsonLd
         itemListElements = {[
           {
@@ -44,9 +46,9 @@ const Product = ({ productData }) => {
         ]}
       />
       <ImageJsonLd
-        url="https://posters.com/poster/poster.jpg"
-        license="https://posters.com/imageLicense"
-        acquireLicensePage="https://posters.com/acquireLicensePage"
+        url={product.images[0].src}
+        license="https://creativecommons.org/licenses/by/4.0/"
+        acquireLicensePage="https://creativecommons.org/licenses/by/4.0/"
       />
       <Head>
         <link rel="icon" href="/favicon.ico" />
